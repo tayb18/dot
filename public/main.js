@@ -4,8 +4,12 @@ $(document).ready(function() {
 	})
 
 	var eventGetter = function(result) {
-		console.log(result);
+		result.forEach(function(element, index) {
+			console.log(element.name);
+			$('.fc-content').eq(index).append(element.name);
+		})
 	}
+	
 	var aJax = function() {
 		$.ajax({
 			url: "/events", 
@@ -13,8 +17,6 @@ $(document).ready(function() {
 			dataype: "JSON"
 		}).done(eventGetter);
 	};
-
-
 	
 	aJax();
 
