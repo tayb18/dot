@@ -37,6 +37,14 @@ app.get('/calendar', function(req, res){
   res.render('calendar');
 });
 
+app.get('/login', function(req, res){
+  res.render('login');
+});
+
+app.get('/signup', function(req, res){
+  res.render('signup');
+});
+
 
 
 app.listen(process.env.PORT || 3000);
