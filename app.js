@@ -4,6 +4,7 @@ var methodOverride = require('method-override');
 var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy;
 
+
 passport.use(new LocalStrategy(
   function(username, password, done) {
     User.findOne({ username: username }, function (err, user) {
@@ -18,6 +19,7 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs')

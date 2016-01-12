@@ -8,10 +8,10 @@
 .basic-info {
   height: 400px;
   width: 700px;
-  margin: 50px;
   margin: 0 auto;
   position: center;
   text-align: center;
+  margin-top: 150px;
 }
 
 h1 {
