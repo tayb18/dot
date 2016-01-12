@@ -39,6 +39,10 @@ app.get('/calendar', function(req, res){
   res.render('calendar');
 });
 
+app.get('/login', function(req, res){
+  res.render('login');
+});
+
 app.post('/login',
   passport.authenticate('local'),
   function(req, res) {
@@ -46,6 +50,12 @@ app.post('/login',
     // `req.user` contains the authenticated user.
     res.redirect('/users/' + req.user.username);
   });
+
+app.get('/signup', function(req, res){
+  res.render('signup');
+});
+
+
 
 
 app.listen(process.env.PORT || 3000);
