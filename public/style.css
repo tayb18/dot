@@ -54,5 +54,8 @@ p {
 .mission {
   display: inline-block;
   float: right;
-  width: 150px;
+  width: 250px;
+  color: #115a42;
+  font-family: 'Antic', sans-serif;
+  font-size: 20px;
 }
