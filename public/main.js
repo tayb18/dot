@@ -1,8 +1,22 @@
 $(document).ready(function() {
-	console.log("linked calendar")
+	$('#calendar').fullCalendar({
+		events: '/events'
+	})
 
-    $('#calendar').fullCalendar({
-       
-    })
+	var eventGetter = function(result) {
+		console.log(result);
+	}
+	var aJax = function() {
+		$.ajax({
+			url: "/events", 
+			type: "GET",
+			dataype: "JSON"
+		}).done(eventGetter);
+	};
+
+
+	
+	aJax();
 
 });
+
