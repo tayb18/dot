@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var methodOverride = require('method-override');
+// var passport = require('passport'),
+// LocalStrategy = require('passport-local'),
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs')
