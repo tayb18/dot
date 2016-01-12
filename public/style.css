@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Antic);
+/* font-family: 'Antic', sans-serif; */
+
+.head {
+  margin: 10px;
+}
+
+.basic-info {
+  height: 400px;
+  width: 700px;
+  margin: 50px;
+  margin: 0 auto;
+  position: center;
+  text-align: center;
+}
+
+h1 {
+  color: #115a42;
+  font-family: 'Antic', sans-serif;
+  font-size: 45px;
+  display: inline-block;
+  float: left;
+  margin-top: 20px;
+}
+
+h2 {
+  display: inline-block;
+}
+
+img {
+  display: inline-block;
+}
+
+.logo {
+  float: right;
+  height: 75px;
+  width: 150px;
+  margin: 10px;
+}
+
+.biker-man {
+  display: inline-block;
+  float: left;
+  height: 250px;
+  width: 350px;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+p {
+  display: inline-block;
+}
+
+.mission {
+  display: inline-block;
+  float: right;
+  width: 150px;
+}
