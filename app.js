@@ -5,24 +5,10 @@ var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy;
 
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-
-
 app.use(express.static(__dirname + '/public'));
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use(methodOverride('_method'));
@@ -43,6 +29,23 @@ MongoClient.connect(mongoUrl, function(err, database){
 })
 
 
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    db.users.findOne({ email: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+// var events = db.collection('events').find({}).toArray( function(err, result) { return result})
+
 app.use(function(req, res, next){
   console.log("body:", req.body, "params:", req.params, "query:", req.query);
   next();
@@ -53,20 +56,25 @@ app.get('/', function(req, res){
 });
 
 app.get('/calendar', function(req, res){
-  res.render('calendar');
+  	res.render('calendar');
+});
+
+app.get('/events', function(req, res) {
+ // send back json that ya got from mongo
+ db.collection('events').find({}).toArray( function(err, result) { 
+ res.send(result) 
+ })
 });
 
 app.get('/login', function(req, res){
   res.render('login');
 });
 
-app.post('/login',
-  passport.authenticate('local'),
-  function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/users/' + req.user.username);
-  });
+app.post('/login', passport.authenticate('local', { 
+  successRedirect: '/',
+  failureRedirect: '/login'
+  })
+);
 
 app.get('/signup', function(req, res){
   res.render('signup');
