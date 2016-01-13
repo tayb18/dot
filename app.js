@@ -56,7 +56,10 @@ app.get('/', function(req, res){
 });
 
 app.get('/calendar', function(req, res){
-  	res.render('calendar');
+	db.collection('events').find({_id: ObjectId(req.params.id)}).toArray(function(err, result) {
+	console.log(result)
+  	res.render('calendar', {oneEvent: result});
+  });
 });
 
 app.get('/events', function(req, res) {
@@ -66,9 +69,19 @@ app.get('/events', function(req, res) {
  })
 });
 
+
+app.get('/events/:name', function(req, res) {
+	db.collection('events').find({name: req.params.name}).toArray(function(err, result) {
+	console.log(result)
+	res.json(result)
+	})
+});
+
+
 app.get('/login', function(req, res){
   res.render('login');
 });
+
 
 app.post('/login', passport.authenticate('local', { 
   successRedirect: '/',
