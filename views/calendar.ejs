@@ -10,6 +10,7 @@
   <script src='bower_components/moment/min/moment.min.js'></script>
   <script src='bower_components/fullcalendar/dist/fullcalendar.js'></script>
   <script type="text/javascript" src="main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
 </head>
 <body>
 
@@ -26,6 +27,9 @@
   
   <div class="modal-container">
       <div class="modal-content">
+        <script id="event-modal" type="x-template">
+          <p>{{name}}</p>
+        </script>
         <button class="close-button">X</button>
       </div>
   </div> 
